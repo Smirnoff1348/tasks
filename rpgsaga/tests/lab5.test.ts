@@ -1,25 +1,31 @@
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import { Computer } from "../src/Task_TS/lab5";
 
-  it("конструктор правильно создаёт объект", () => {
-    const pc = new Computer("Acer", "Nitro", 512);
-    expect(pc.brand).toBe("Acer");
-    expect(pc.model).toBe("Nitro");
-    expect(pc.getSize()).toBe(512);
+describe("Класс Computer", () => {
+  const brand = "Kraftway";
+  const model = "IC220";
+  const size = 512;
+
+  it("конструктор должен правильно создавать объект", () => {
+    const pc = new Computer(brand, model, size);
+    expect(pc.brand).toBe(brand);
+    expect(pc.model).toBe(model);
+    expect(pc.getSize()).toBe(size);
   });
 
-  it("setSize работает", () => {
-    const pc = new Computer("Dell", "XPS", 256);
-    pc.setSize(512);
-    expect(pc.getSize()).toBe(512);
+  it("setSize должен изменять размер диска", () => {
+    const pc = new Computer(brand, model, size);
+    pc.setSize(1024);
+    expect(pc.getSize()).toBe(1024);
   });
 
-  it("getSize работает", () => {
-    const pc = new Computer("HP", "Pavilion", 128);
-    expect(pc.getSize()).toBe(128);
+  it("getSize должен возвращать текущий размер", () => {
+    const pc = new Computer(brand, model, size);
+    expect(pc.getSize()).toBe(size);
   });
 
-  it("print исправен", () => {
-    const pc = new Computer("Lenovo", "ThinkPad", 256);
+  it("print не должен выбрасывать ошибку", () => {
+    const pc = new Computer(brand, model, size);
     expect(() => pc.print()).not.toThrow();
   });
+});
